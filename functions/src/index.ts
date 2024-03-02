@@ -1,6 +1,6 @@
-import functions from 'firebase-functions';
-import cors from 'cors';
-import express from 'express';
+import * as functions from "firebase-functions";
+import * as express from "express";
+import * as cors from "cors";
 
 // Express app configuration
 const app = express();
@@ -15,20 +15,19 @@ app.use(express.urlencoded({extended: false}));
 app.use(cors({origin: true}));
 
 // A simple API to get all tasks
-app.get('/test', (request, response) => {
+app.get("/test", (request, response) => {
   response.status(200).send([
     {
-      id: '123',
-      name: 'Task 1',
+      id: "123",
+      name: "Task 1",
       isComplete: false,
     },
     {
-      id: '456',
-      name: 'Task 2',
+      id: "456",
+      name: "Task 2",
       isComplete: true,
     },
   ]);
 });
 
-// Define the Firebase function that will act as Express application
-export const api = functions.https.onRequest(app);
+exports.api = functions.https.onRequest(app);
